@@ -23,7 +23,7 @@ def request_api(request):
             hospitals = Hospital.objects.filter(q);
 
             if len(hospitals) != 0:
-                return HttpResponse(util.get_api_address_json(hospitals[0].api_address))
+                return HttpResponse(util.get_hospital_json(hospitals[0]))
             else :
                 return HttpResponse(util.get_err_json("No data"))
         else:

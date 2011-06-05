@@ -1,4 +1,5 @@
 import json
+from django.core import serializers
 
 ## utility functions
 
@@ -13,7 +14,5 @@ def get_err_json(message) :
     err_dict['message'] = message
     return json.dumps(err_dict)
 
-def get_api_address_json(address) :
-    address_dict = get_json_dict(CODE_OK)
-    address_dict['api_address'] = address
-    return json.dumps(address_dict)
+def get_hospital_json(hospital) :
+    return serializers.serialize("json", [hospital, ])

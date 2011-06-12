@@ -1,38 +1,31 @@
-from djagno.contrib.auth.models import User
 from django.db import models
-from hospital.treatment.models import Patient
+
+from django.contrib.auth.models import User
+
+class Location(models.Model) :
+    position = models.TextField()
 
 class Nurse(models.Model) :
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, related_name="nurse_user")
     location = models.ForeignKey(Location)
-    patients = models.ManyToManyField(Patient)
+    patients = models.ManyToManyField("treatment.Patient")
     
     security_number = models.CharField(max_length = 127, unique=True);
     age = models.PositiveIntegerField()
     work_detail = models.TextField()
 
 class Doctor(models.Model) :
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, related_name="doctor_user")
     location = models.ForeignKey(Location)
-    patients = models.ManyToManyField(Patient)
+    patients = models.ManyToManyField("treatment.Patient")
 
     security_number = models.CharField(max_length = 127, unique=True);
     age = models.PositiveIntegerField()
     work_detail = models.TextField()
 
-class Location(models.Model) :
-    position = models.TextField()
-
 class Message(models.Model) :
-    class Meta:
-        permissions = (
-            ("can_add", "Can add document"),
-            ("can_delete", "Can delete document"),
-            ("can_change", "Can change document"),
-        )
-    
-    patient = models.ForeignKey(Patient)
-    user = models.ForeignKey(User)
+    patient = models.ForeignKey("treatment.Patient")
+    user = models.ForeignKey(User, related_name="write_user")
 
     content = models.TextField()
 

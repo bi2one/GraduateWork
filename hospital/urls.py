@@ -14,4 +14,12 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # (r'^admin/', include(admin.site.urls)),
+
+    # for index page
+    (r'^$', 'hospital.admin.views.index'),
+    (r'^/$', 'hospital.admin.views.index'),
+
+    (r'^treatment/', include('hospital.treatment.urls')),
+    (r'^admin/', include('hospital.admin.urls')),
+    (r'^report/', include('hospital.report.urls')),
 )

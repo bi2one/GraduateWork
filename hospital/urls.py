@@ -16,10 +16,15 @@ urlpatterns = patterns('',
     # (r'^admin/', include(admin.site.urls)),
 
     # for index page
-    (r'^$', 'hospital.admin.views.index'),
-    (r'^/$', 'hospital.admin.views.index'),
+    (r'^$', 'hospital.page.views.index'),
+    (r'^/$', 'hospital.page.views.index'),
+
+    # (r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
+                       
 
     (r'^treatment/', include('hospital.treatment.urls')),
     (r'^admin/', include('hospital.admin.urls')),
     (r'^report/', include('hospital.report.urls')),
+    (r'^page/', include('hospital.page.urls')),
+    (r'^accounts/', include('hospital.accounts.urls')),
 )

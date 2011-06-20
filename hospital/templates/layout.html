@@ -1,0 +1,27 @@
+{% extends "main_layout.html" %}
+
+{% block header %}
+{% if staff %}
+{% ifequal staff_type staff_type_dict.1 %}
+의사
+{% else %}
+간호사
+{% endifequal %}
+{{ user.username }}님 안녕하세요!
+<a href="/accounts/logout/">로그아웃</a>
+{% else %}
+로그인하지 않으셨습니다!
+<a href="/accounts/login/">로그인</a>
+<a href="/accounts/join/">회원가입</a>
+{% endif %}
+<ul class="navigation">
+  <li><a href="/page/help/">도움말</a></li>
+  <li><a href="/page/status/">환자상태보고</a></li>
+</ul>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+  {% block content %}{% endblock %}
+</div>
+{% endblock %}

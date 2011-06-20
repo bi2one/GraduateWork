@@ -1,5 +1,4 @@
 import os
-
 # Django settings for hospital project.
 
 DEBUG = True
@@ -67,6 +66,15 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'hospital.urls'
 
+SESSION_EXPIRE_AT_BROWSER_CLOSE=True
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'hospital.context_processors.staff',
+    'django.core.context_processors.auth',
+    'django.core.context_processors.request',
+    'django.core.context_processors.i18n',
+    )
+
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
@@ -82,4 +90,13 @@ INSTALLED_APPS = (
     'hospital.admin',
     'hospital.report',
     'hospital.treatment',
+    'hospital.page.templatetags',
+    'hospital.page',
 )
+
+# public varaibles
+STAFF_TYPE = { 1: "doctor", 2: "nurse", }
+BOARD_MODULE_NAME = { "status": "status", }
+TREATMENT_STATUS = { 1: "patient", 2: "receipt" }
+
+STATUS_PAGINATION_UNIT = 2

@@ -1,0 +1,36 @@
+{% extends "main_layout.html" %}
+
+{% block title %}login{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="/site_media/css/login.css" />
+{% endblock %}
+
+{% block body %}
+<div class="login-content">
+  <h2>로그인</h2>
+  <form method="POST" id="login-form" action="/accounts/login/?next={{ next }}">
+    <table>
+      <tr>
+	<td>{{ form.username.label_tag }}</td>
+	<td>{{ form.username }}</td>
+	<td>{{ form.username.errors.0 }}</td>
+      </tr>
+      <tr>
+	<td>{{ form.password.label_tag }}</td>
+	<td>{{ form.password }}</td>
+	<td>{{ form.password.errors.0 }}</td>
+      </tr>
+   </table>
+    {% if is_error %}
+    <div class="error">
+      <p>아이디가 존재하지 않거나, 비밀번호와 일치하지 않습니다</p>
+    </div>
+    {% endif %}
+
+    <div class="submit-wrap">
+      <input type="submit" value="로그인하기" />
+    </div>
+  </form>
+</div>
+{% endblock %}

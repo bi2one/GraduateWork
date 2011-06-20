@@ -1,6 +1,14 @@
-<!DOCTYPE HTML>
-<html>
-  <body>
-    Contents.. intro.
-  </body>
-</html>
+{% extends "main_layout.html" %}
+
+{% block title %}index{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="/site_media/css/index.css" />
+{% endblock %}
+
+{% block body %}
+<div class="content">
+  <p>병원 메신저 서비스입니다. 입장하려면 다음 버튼을 누르세요.</p>
+  <a href="/page/help/">입장하기</a>
+</div>
+{% endblock %}

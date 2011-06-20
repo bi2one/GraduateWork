@@ -6,7 +6,7 @@ class Location(models.Model) :
     position = models.TextField()
 
 class Nurse(models.Model) :
-    user = models.ForeignKey(User, related_name="nurse_user")
+    user = models.ForeignKey(User)
     location = models.ForeignKey(Location)
     patients = models.ManyToManyField("treatment.Patient")
     
@@ -15,7 +15,7 @@ class Nurse(models.Model) :
     work_detail = models.TextField()
 
 class Doctor(models.Model) :
-    user = models.ForeignKey(User, related_name="doctor_user")
+    user = models.ForeignKey(User)
     location = models.ForeignKey(Location)
     patients = models.ManyToManyField("treatment.Patient")
 

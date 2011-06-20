@@ -1,0 +1,21 @@
+<div class="pagination">
+  {% if prev_page %}
+  <a href="/page/{{module_name}}/1/">처음 페이지</a>
+  <a href="/page/{{module_name}}/{{prev_page}}/">이전 페이지</a>
+  {% endif %}
+  {% for page in pages %}
+  <a href="/page/{{module_name}}/{{page}}/">
+    <span class="page-number">
+      {% ifequal page current_page %}
+      <span style="font-weight:bold">{{ page }}</span>
+      {% else %}
+      {{ page }}
+      {% endifequal %}
+    </span>
+  </a>
+  {% endfor %}
+  {% if next_page %}
+  <a href="/page/{{module_name}}/{{next_page}}/">다음 페이지</a>
+  <a href="/page/{{module_name}}/{{last_page}}/">마지막 페이지</a>
+  {% endif %}
+</div>

@@ -1,0 +1,65 @@
+{% extends "main_layout.html" %}
+
+{% block title %}join{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="/site_media/css/join.css" />
+{% endblock %}
+
+{% block body %}
+<div class="join-content">
+  <h2>회원가입</h2>
+  <form method="POST" id="login-form" action="./">
+    <table>
+      <tr>
+	<td>{{ form.username.label_tag }}</td>
+	<td>{{ form.username }}</td>
+	<td>{{ form.username.errors.0 }}</td>
+      </tr>
+      <tr>
+	<td>{{ form.password.label_tag }}</td>
+	<td>{{ form.password }}</td>
+	<td>{{ form.password.errors.0 }}</td>
+      </tr>
+      <tr>
+	<td>{{ form.password_confirm.label_tag }}</td>
+	<td>{{ form.password_confirm }}</td>
+	<td>{{ form.password_confirm.errors.0 }}</td>
+      </tr>
+      <tr>
+	<td>{{ form.location.label_tag }}</td>
+	<td>{{ form.location }}</td>
+	<td>{{ form.location.errors.0 }}</td>
+      </tr>
+      <tr>
+	<td>{{ form.security_number_1.label_tag }}</td>
+	<td>{{ form.security_number_1 }} - {{ form.security_number_2 }}</td>
+	<td>
+	  {% if form.security_number_1.errors %}
+	  {{ form.security_number_1.errors.0 }}
+	  {% else %}{% if form.security_number_2.errors %}
+	  {{ form.security_number_2.errors.0 }}
+	  {% endif %}
+	  {% endif %}
+	</td>
+      </tr>
+      <tr>
+	<td>{{ form.age.label_tag }}</td>
+	<td>{{ form.age }}</td>
+	<td>{{ form.age.errors.0 }}</td>
+      </tr>
+      <tr>
+	<td>{{ form.work_detail.label_tag }}</td>
+	<td>{{ form.work_detail }}</td>
+	<td>{{ form.work_detail.errors.0 }}</td>
+      </tr>
+      <tr>
+	<td>{{ form.staff_type.label_tag }}</td>
+	<td>{{ form.staff_type }}</td>
+	<td>{{ form.staff_type.errors.0 }}</td>
+      </tr>
+   </table>
+    <input type="submit" value="회원가입" />
+  </form>
+</div>
+{% endblock %}

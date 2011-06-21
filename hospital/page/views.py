@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 from hospital.treatment.models import Patient, Caretaker
 from hospital.admin.models import Message, Nurse, Doctor
-from hospital.report.models import StatusReport
+from hospital.report.models import StatusReport, TalkRequest
 from hospital.admin.util import HttpResponseJsonObject, HttpResponseJsonArray
 from hospital.admin.decorator import secret_key_required
 from hospital.page.util import pagination
@@ -19,8 +19,11 @@ def index(request):
 @login_required
 def status(request, page_number=1):
     docs = StatusReport.objects.all().order_by('-created')
-    variables = pagination(request, docs, page_number, settings.STATUS_PAGINATION_UNIT)
-    variables.update({
+    
+    # variables = pagination(request, docs, page_number, settings.STATUS_PAGINATION_UNIT)
+    # variables.update({
+    variables = RequestContext(request, {
+        'docs': docs,
         "module_name":settings.BOARD_MODULE_NAME['status'],
         })
     
@@ -31,3 +34,11 @@ def status(request, page_number=1):
 def help(request):
     return render_to_response('help.html',
                               context_instance=RequestContext(request))
+
+@login_required
+def talk(request):
+    docs = TalkRequest.objects.all().order_by('-created')
+    variables = RequestContext(request, {
+        'docs': docs,
+        })
+    return render_to_response('talk.html', variables)

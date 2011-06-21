@@ -19,5 +19,6 @@ urlpatterns = patterns('hospital.admin.views',
     (r'request_caretaker/$', 'request_caretaker'),
     (r'request_message/$', 'request_message'),
     (r'request_executive/$', 'request_executive'),
+
     # (r'api_test/$', 'api_test'),
 )

@@ -1,0 +1,109 @@
+{% extends "layout.html" %}
+{% load page_filter %}
+
+{% block title %}regist patient{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="/site_media/css/regist_patient.css" />
+<link rel="stylesheet" type="text/css" href="/site_media/css/pagination.css" />
+{% endblock %}
+
+{% block content %}
+<h2>환자 등록 페이지</h2>
+
+{% if is_success %}
+<p class="success-msg">
+  환자 등록에 성공하였습니다.
+</p>
+{% endif %}
+<form method="POST" id="regist-form" action="./">
+  <table>
+    <tr>
+      <td>{{ form.name.label_tag }}</td>
+      <td>{{ form.name }}</td>
+      <td>{{ form.name.errors.0 }}</td>
+    </tr>
+    {{ form.secret_key }}
+    <tr>
+      <td>{{ form.security_number_1.label_tag }}</td>
+      <td>{{ form.security_number_1 }} - {{ form.security_number_2 }}</td>
+      <td>
+	{% if form.security_number_1.errors %}
+	{{ form.security_number_1.errors.0 }}
+	{% else %}{% if form.security_number_2.errors %}
+	{{ form.security_number_2.errors.0 }}
+	{% endif %}
+	{% endif %}
+      </td>
+    </tr>
+    <tr>
+      <td>{{ form.location.label_tag }}</td>
+      <td>{{ form.location }}</td>
+      <td>{{ form.location.errors.0 }}</td>
+    </tr>
+    <tr>
+      <td>{{ form.status.label_tag }}</td>
+      <td>{{ form.status }}</td>
+      <td>{{ form.status.errors.0 }}</td>
+    </tr>
+    <tr>
+      <td>{{ form.age.label_tag }}</td>
+      <td>{{ form.age }}</td>
+      <td>{{ form.age.errors.0 }}</td>
+    </tr>
+    <tr>
+      <td>{{ form.blood_type.label_tag }}</td>
+      <td>{{ form.blood_type }}</td>
+      <td>{{ form.blood_type.errors.0 }}</td>
+    </tr>
+    <tr>
+      <td>{{ form.hospitalized_year.label_tag }}</td>
+      <td>{{ form.hospitalized_year }}년 {{ form.hospitalized_month }}월 {{ form.hospitalized_day }}</td>
+      <td>
+	{% if form.hospitalized_year.errors %}
+	{{ form.hospitalized_year.errors.0 }}
+	{% else %}{% if form.hospitalized_month.errors %}
+	{{ form.hospitalized_month.errors.0 }}
+	{% else %}{% if form.hospitalized_day.errors %}
+	{{ form.hospitalized_day.errors.0 }}
+	{% endif %}
+	{% endif %}
+	{% endif %}
+      </td>
+    </tr>
+    <tr>
+      <td>{{ form.caretaker_name.label_tag }}</td>
+      <td>{{ form.caretaker_name }}</td>
+      <td>{{ form.caretaker_name.errors.0 }}</td>
+    </tr>
+    <tr>
+      <td>{{ form.caretaker_security_number_1.label_tag }}</td>
+      <td>{{ form.caretaker_security_number_1 }} - {{ form.caretaker_security_number_2 }}</td>
+      <td>
+	{% if form.caretaker_security_number_1.errors %}
+	{{ form.caretaker_security_number_1.errors.0 }}
+	{% else %}{% if form.caretaker_security_number_2.errors %}
+	{{ form.caretaker_security_number_2.errors.0 }}
+	{% endif %}
+	{% endif %}
+      </td>
+    </tr>
+    <tr>
+      <td>{{ form.contact_1.label_tag }}</td>
+      <td>{{ form.contact_1 }} - {{ form.contact_2 }} - {{ form.contact_3 }}</td>
+      <td>
+	{% if form.contact_1.errors %}
+	{{ form.contact_1.errors.0 }}
+	{% else %}{% if form.contact_2.errors %}
+	{{ form.contact_2.errors.0 }}
+	{% else %}{% if form.contact_3.errors %}
+	{{ form.contact_3.errors.0 }}
+	{% endif %}
+	{% endif %}
+	{% endif %}
+      </td>
+    </tr>
+  </table>
+  <input type="submit" value="환자등록" />
+</form>
+{% endblock %}

@@ -18,4 +18,6 @@ urlpatterns = patterns('hospital.treatment.views',
     # (r'request_api/$', 'request_api'),
     # (r'api_test/$', 'api_test'),
     (r'request_schedule/$', 'request_schedule'),
+
+    (r'regist/patient/$', 'regist_patient'),
 )

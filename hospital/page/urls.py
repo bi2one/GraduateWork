@@ -19,4 +19,5 @@ urlpatterns = patterns('hospital.page.views',
     (r'help/$', 'help'),
     (r'status/$', 'status'),
     (r'status/(?P<page_number>\d+)/$', 'status'),
+    (r'talk/$', 'talk'),
 )

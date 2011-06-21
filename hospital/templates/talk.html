@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% load page_filter %}
+
+{% block title %}message{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="/site_media/css/talk.css" />
+{% endblock %}
+
+{% block content %}
+<h2>환자 상담 요청 페이지</h2>
+
+{% if docs %}
+<table class="talk-table">
+  <colgroup>
+    <col width="90px" />
+    <col width="120px" />
+    <col width="150px" />
+    <col width="150px" />
+    <col width="130px" />
+  </colgroup>
+  <tr>
+    <th>환자명</th>
+    <th>환자상태</th>
+    <th>상담요청내용</th>
+    <th>제출일</th>
+  </tr>
+  {% for doc in docs %}
+  <tr>
+    <td>{{ doc.patient.name }}</td>
+    <td>{{ doc.patient.treatment_status|pp_treatment_status }}</td>
+    <td>{{ doc.detail }}</td>
+    <td>{{ doc.created.date }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+{% include "pagination.html" %}
+
+{% endblock %}

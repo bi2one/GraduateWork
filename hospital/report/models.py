@@ -18,7 +18,7 @@ class StatusReport(models.Model) :
 
 class Emergency(models.Model) :
     patient = models.ForeignKey("treatment.Patient")
-
+    
     detail = models.TextField(default="")
 
     created = models.DateTimeField(auto_now_add=True)

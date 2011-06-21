@@ -9,8 +9,8 @@ from hospital.treatment.models import Patient
 def secret_key_required():
     def decorator(func):
         def inner_decorator(request, *args, **kwargs):
-            if request.method == 'GET':
-                patient = get_object_or_404(Patient, secret_key = request.GET['secret_key'])
+            if request.method == 'POST':
+                patient = get_object_or_404(Patient, secret_key = request.POST['secret_key'])
                 request.session['patient'] = patient
                 return func(request, *args, **kwargs)
             else:

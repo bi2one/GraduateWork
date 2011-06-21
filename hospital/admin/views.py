@@ -3,10 +3,12 @@ from django.template import RequestContext
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404, HttpResponse
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 from hospital.treatment.models import Patient, Caretaker
 from hospital.admin.models import Message, Nurse, Doctor
 from hospital.admin.util import HttpResponseJsonObject, HttpResponseJsonArray
+from hospital.admin.forms import MessageForm
 from hospital.admin.decorator import secret_key_required
 
 def index(request):
@@ -51,3 +53,29 @@ def request_executive(request):
         executive = get_object_or_404(Nurse, user=user)
 
     return HttpResponseJsonObject(executive)
+
+@login_required()
+def write_message(request):
+    patients = Patient.objects.all()
+    form = MessageForm();
+    is_success = False
+    
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            patient = form.cleaned_data['patient']
+            content = form.cleaned_data['content']
+            message = Message(
+                patient = patient,
+                user = request.user,
+                content = content)
+            message.save()
+            is_success = True
+
+    variables = RequestContext(request, {
+        'patients': patients,
+        'form': form,
+        'is_success': is_success
+        })
+    
+    return render_to_response('write_message.html', variables)

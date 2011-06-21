@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% load page_filter %}
+
+{% block title %}write message{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="/site_media/css/write_message.css" />
+{% endblock %}
+
+{% block content %}
+<h2>메시지 쓰기 페이지</h2>
+
+{% if is_success %}
+<p class="success-msg">
+  메시지 쓰기를 완료하였습니다.
+</p>
+{% endif %}
+<form method="POST" id="regist-form" action="./">
+  <table>
+    <tr>
+      <td>{{ form.patient.label_tag }}</td>
+      <td>{{ form.patient }}</td>
+      <td>{{ form.patient.errors.0 }}</td>
+    </tr>
+    <tr>
+      <td>{{ form.content.label_tag }}</td>
+      <td>{{ form.content }}</td>
+      <td>{{ form.content.errors.0 }}</td>
+    </tr>
+  </table>
+  <input type="submit" value="메시지 쓰기" />
+</form>
+
+<h3>환자 리스트</h3>
+<table class="patient-table">
+  <tr>
+    <th>환자아이디</th>
+    <th>환자이름</th>
+    <th>환자상태</th>
+  </tr>
+  {% for patient in patients %}
+  <tr>
+    <td>{{ patient.id }}</td>
+    <td>{{ patient.name }}</td>
+    <td>{{ patient.treatment_status|pp_treatment_status }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

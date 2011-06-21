@@ -2,6 +2,7 @@ from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404, HttpResponse
+from django.contrib.auth.decorators import login_required
 
 from hospital.report.models import Emergency, StatusReport, TalkRequest
 from hospital.treatment.models import Patient
